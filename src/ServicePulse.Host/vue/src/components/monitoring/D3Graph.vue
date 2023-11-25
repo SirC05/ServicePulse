@@ -1,22 +1,22 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import * as d3 from "d3";
-/*import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";*/
 import { useFormatTime, useFormatLargeNumber } from "../../composables/formatter.js";
+import { getArrowLabel } from "../../composables/graphLabel.js";
 const props = defineProps({
   plotdata: Object,
   minimumyaxis: Number,
   avglabelcolor: String,
   isdurationgraph: Boolean,
   metricsuffix: String,
-  csclass: String,
   endpointname: String,
-  colname: String,
+  type: String,
 });
 const averageDecimalsDefault = 2;
 const avgLabelColorDefault = "#2700CB";
 const avgLabelSuffixDefault = "";
 const root = ref(null);
+var averageLabelToTheRight = getArrowLabel(false, 'AVG');
 
 function displayGraphValues() {
   var svg = root.value.getElementsByTagName("svg")[0];
@@ -54,19 +54,15 @@ function displayGraphValues() {
     .scaleLinear()
     .domain([0, numberOfPoints - 1])
     .range([horizontalMargin, width - horizontalMargin]);
-
     var area = d3
         .area()
         .x(function (d, i) {
-            console.log(d); //dummy call to get past eslint error
             return scaleX(i);
         })
         .y(function (d, i) {
-            console.log(i); //dummy call to get past eslint error
             return scaleY(d);
         })
         .y1(function (d) {
-            console.log(d); //dummy call to get past eslint error
             return scaleY(0);
         })
         .curve(d3.curveLinear);
@@ -74,11 +70,9 @@ function displayGraphValues() {
     var line = d3
         .line()
         .x(function (d, i) {
-            console.log(d); //dummy call to get past eslint error
             return scaleX(i);
         })
         .y(function (d, i) {
-            console.log(i); //dummy call to get past eslint error
             return scaleY(d);
         })
         .curve(d3.curveLinear);
@@ -93,7 +87,6 @@ function displayGraphValues() {
     .attr("fill", "#F2F6F7");
 
     if (points) {
-        //console.log(props.endpointname + ":" + props.colname + ":" + points.length);
         chart.append("path").datum(points).attr("d", area).attr("class", "graph-data-fill");
 
         chart.append("path").datum(points).attr("d", line).attr("class", "graph-data-line");
@@ -122,11 +115,10 @@ function displayGraphValues() {
         suffix = useFormatTime(average).unit.toUpperCase();
       }
 
-      // displayAverageLabel(averageLine, averageLabelToTheRight, value, avgLabelColor, suffix);
-      displayAverageLabel(averageLine, null, value, avgLabelColor, suffix);
+      displayAverageLabel(averageLine, averageLabelToTheRight, value, avgLabelColor, suffix);
     })
     .on("mouseout", function () {
-      // averageLabelToTheRight.hide();
+       averageLabelToTheRight.hide();
     });
 }
 onMounted(() => {
@@ -135,7 +127,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="root" :class="[csclass]">
+    <div ref="root" class="graph pull-left ng-isolate-scope"  :class="[type]">
      <svg></svg>
     </div>
 </template>

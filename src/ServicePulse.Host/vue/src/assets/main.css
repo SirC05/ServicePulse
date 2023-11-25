@@ -2353,16 +2353,6 @@ div.alert.alert-warning strong {
   }
 }
 
-.license-warning,
-.license-warning h5 {
-    color: black;
-}
-
-.btn-license-warning {
-    color: #f89406;
-    background: black;
-}
-
 span.fa-exclamation-triangle.warning {
     color: #F3BC52;
     background: linear-gradient(black,black) center/20% 72% no-repeat;
@@ -2438,35 +2428,6 @@ span.fa-exclamation-triangle.danger {
 
 #toast-container > .toast-warning:after {
     background-color: rgba(0,0,0,0);
-}
-
-.toast-message a.btn.btn-license-warning {
-    margin-top: 16px;
-    color: #F3BC52;
-}
-
-.toast-message a.btn.btn-license-warning:hover, .toast-error a.btn.btn-default:hover {
-    opacity: 0.85;
-}
-
-.toast-error a.btn.btn-default {
-    color: #bd362f;
-    padding-right: 20px;
-    padding-left: 20px;
-    border: none;
-    margin-top: 16px;
-}
-
-.toast-message a.btn.btn-license-warning-light {
-    margin-top: 16px;
-    margin-left: 10px;
-    color: #000;
-    border: 1px solid #000;
-    background-color: rgba(0,0,0,0);
-}
-
-.toast-message a.btn.btn-license-warning-light:hover {
-    background-color: rgba(0,0,0,0.1);
 }
 
 .toast-warning .toast-close-button {
@@ -3351,7 +3312,7 @@ g.error .node-text a:hover {
 div.avg-tooltip {
     position: absolute;
     text-align: left;
-    padding: .5rem;
+    padding: .3rem;
     line-height: 1;
     background: var(--avg-tooltip-background-color);
     color: #ffffff;
@@ -3566,19 +3527,19 @@ label {
   border-color: #1b809e;
 }
 
-.label-warning, 
+.label-warning,
 .badge-warning {
     background-color: #aa6708;
     border-color: #aa6708;
 }
 
-.label-important, 
+.label-important,
 .badge-important {
     background-color: #FA603D;
     border-color: #FA5833;
 }
 
-pre {    
+pre {
     display: block;
     padding: 9.5px;
     margin: 0 0 10px;
@@ -3755,7 +3716,7 @@ pre {
     margin-top: 20px;
 }
 
-.modal-msg-editor .row, 
+.modal-msg-editor .row,
 .modal-msg-editor .col-sm-12 {
     height: 100%;
 }
@@ -3931,11 +3892,11 @@ input.check-label {
 .metadata > .btn-sm > i {
     color: #00a3c4;
 }
-  
+
 .metadata:first-child {
     padding-left: 0;
 }
-  
+
 span.metadata {
     display: inline-block;
     padding: 0px 20px 2px 0;
@@ -3945,7 +3906,7 @@ span.metadata {
 span.metadata.metadata-link i.fa {
     color: #00a3c4;
 }
-  
+
 .metadata > .in-progress {
     font-style: italic;
     color: white;
@@ -3956,7 +3917,7 @@ span.metadata.metadata-link i.fa {
     position: relative;
     top: -1px;
 }
-  
+
 .metadata > .metadata-label {
     padding: 6px 10px;
 }
@@ -3973,12 +3934,12 @@ span.metadata.metadata-link i.fa {
     left: 11px;
     line-height: 1;
 }
-  
+
 .btn.btn-retry-dismiss {
     border-radius: 4px;
     padding: 8px 16px;
 }
-  
+
 .btn.btn-xs {
     font-size: 12px;
 }
