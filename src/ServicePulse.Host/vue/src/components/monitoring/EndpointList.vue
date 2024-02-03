@@ -50,11 +50,11 @@ onMounted(async () => {
     </div>
     <div>
       <div v-if="isGrouped">
-        <div class="row" v-for="(endpointGroup, index) in monitoringStore.grouping.groupedEndpoints" :key="index">
+        <div v-for="(endpointGroup, index) in monitoringStore.grouping.groupedEndpoints" :key="index">
           <div class="endpoint-group-title">
             {{ endpointGroup.group }}
           </div>
-          <div class="row box endpoint-row" v-for="(groupedEndpoint, index) in endpointGroup.endpoints" :key="index">
+          <div class="endpoint-row" v-for="(groupedEndpoint, index) in endpointGroup.endpoints" :key="index">
             <EndpointListRow :endpoint="groupedEndpoint.endpoint" />
           </div>
         </div>
