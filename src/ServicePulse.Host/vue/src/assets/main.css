@@ -1886,14 +1886,6 @@ h1 .endpoint-status i.fa-envelope, .endpoint-status i.fa-exclamation-triangle {
     top: -11px;
 }
 
-.monitoring-head .endpoint-status {
-    top: 4px;
-}
-
-.monitoring-head .endpoint-status a {
-    top: 0;
-}
-
 .monitoring-head .endpoint-status a[ng-if="endpoint.errorCount"] {
     top: -5px;
 }
@@ -1905,17 +1897,16 @@ h1 .endpoint-status i.fa-envelope, .endpoint-status i.fa-exclamation-triangle {
     left: 1px;
 }
 
-.monitoring-head .endpoint-status .badge {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    font-size: 10px;
+.endpoint-status  {
+    display: inline-block;
 }
 
 .endpoint-status .badge {
     position: absolute;
+    top: auto;
+    right: 0;
     bottom: 0;
-    right: 0;   
+    left: auto;
     font-size: 10px;
 }
 
@@ -2005,10 +1996,6 @@ h1 .endpoint-status i.fa-envelope, .endpoint-status i.fa-exclamation-triangle {
     font-size: 14px;
     display: inline-block;
     text-transform: uppercase;
-}
-
-.message-type-label {
-    margin-top: -8px;
 }
 
 .message-type-part {
@@ -4046,11 +4033,23 @@ div.alert.alert-warning strong {
 .table-col {
     width: 16%;
 }
+.col-wide {
+    width: 36%;
+}
+.col-small {
+    width: 16%;
+}
 @media only screen and (min-width: 1730px) {
     .table-first-col {
         width: 30%;
     }
     .table-col {
+        width: 14%;
+    }
+    .col-wide {
+        width: 44%;
+    }
+    .col-small {
         width: 14%;
     }
 }
@@ -4071,6 +4070,12 @@ div.alert.alert-warning strong {
 .endpoint-name {
     display: flex;
     align-items: center;
+}
+
+.vertical {
+    flex-direction: column;
+    align-items: normal;
+    justify-content: center;
 }
 
 .endpoint-name_wrapper {

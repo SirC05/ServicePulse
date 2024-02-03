@@ -158,14 +158,6 @@ onMounted(async () => {
   padding-right: 0;
 }
 
-.monitoring-head .endpoint-status {
-  top: 4px;
-}
-
-.monitoring-head .endpoint-status a {
-  top: 0;
-}
-
 .monitoring-head .endpoint-status a[ng-if="endpoint.errorCount"] {
   top: -5px;
 }
@@ -175,13 +167,6 @@ onMounted(async () => {
   position: relative;
   top: -4px;
   left: 1px;
-}
-
-.monitoring-head .endpoint-status .badge {
-  position: relative;
-  top: 4px;
-  left: -12px;
-  font-size: 10px;
 }
 
 .monitoring-view .filter-group.filter-monitoring:before {
