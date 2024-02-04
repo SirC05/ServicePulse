@@ -1869,13 +1869,21 @@ h1 .endpoint-status i.fa-envelope, .endpoint-status i.fa-exclamation-triangle {
     font-size: 20px;
 }
 
-.endpoint-status a {
+.endpoint-status .warning {
+    position: relative;
+    margin-left: 10px;
+}
+
+.endpoint-status .email-errors {
     display: block;
     position: relative;
-    margin-left: 15px;
-    padding-right: 13px;
     padding-bottom: 3px;
-    padding-top: 3px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.endpoint-status .fa {
+    display: block;
 }
 
 .endpoint-status a:hover {
@@ -1897,8 +1905,9 @@ h1 .endpoint-status i.fa-envelope, .endpoint-status i.fa-exclamation-triangle {
     left: 1px;
 }
 
-.endpoint-status  {
-    display: inline-block;
+.endpoint-status {
+    display: flex;
+    align-items: center;
 }
 
 .endpoint-status .badge {
@@ -2096,8 +2105,6 @@ i.fa-exclamation-triangle {
     background-repeat: no-repeat;
     width: 20px;
     height: 20px;
-    margin-left: 4px;
-    padding-top: 24px;
 }
 
 .message-type-status .pa-warning {
@@ -2110,10 +2117,10 @@ i.fa-exclamation-triangle {
 }
 
 .endpoint-status .pa-endpoint-lost.endpoint-details, .endpoint-status .pa-monitoring-lost.endpoint-details, .endpoint-status .pa-endpoint-lost.endpoints-overview, .endpoint-status .pa-monitoring-lost.endpoints-overview {
-    width: 26px;
-    height: 26px;
-    left: 6px;
     position: relative;
+    margin-top: 5px;
+    width: 31px;
+    height: 22px;
 }
 
 .endpoint-message-types .endpoint-status {
@@ -2130,11 +2137,6 @@ i.fa-exclamation-triangle {
 
 i.fa.pa-endpoint-lost.endpoints-overview, i.fa.pa-monitoring-lost.endpoints-overview {
     position: relative;
-    margin-right: 4px;
-}
-
-i.fa.pa-endpoint-lost.endpoints-overview {
-    top: 8px;
 }
 
 .endpoint-name_text {
@@ -2921,10 +2923,6 @@ a.remove-endpoint:hover i {
     font-weight: normal;
     margin-left: 3px;
     cursor: default;
-}
-
-.monitoring-lost-link i {
-    top: 7px;
 }
 
 .select-all {

@@ -372,9 +372,9 @@ onMounted(() => {
                 <i class="fa pa-monitoring-lost endpoint-details" v-tooltip :title="`Unable to connect to monitoring server`"></i>
               </span>
               <span class="warning" v-if="endpoint.errorCount" v-tooltip :title="endpoint.errorCount + ` failed messages associated with this endpoint. Click to see list.`">
-                <a v-if="endpoint.errorCount" class="warning cursorpointer" @click="navigateToMessageGroup($event, endpoint.serviceControlId)">
+                <a v-if="endpoint.errorCount" class="email-errors" @click="navigateToMessageGroup($event, endpoint.serviceControlId)">
                   <i class="fa fa-envelope"></i>
-                  <span class="badge badge-important ng-binding cursorpointer"> {{ endpoint.errorCount }}</span>
+                  <span class="badge badge-important ng-binding"> {{ endpoint.errorCount }}</span>
                 </a>
               </span>
             </div>
@@ -564,9 +564,9 @@ onMounted(() => {
                                   <i class="fa pa-endpoint-lost endpoint-details" v-tooltip :title="`Unable to connect to instance`"></i>
                                 </span>
                                 <span class="warning" v-if="instance.errorCount" v-tooltip :title="instance.errorCount + ` failed messages associated with this endpoint. Click to see list.`">
-                                  <a v-if="instance.errorCount" class="warning cursorpointer" @click="navigateToMessageGroup($event, instance.serviceControlId)">
+                                  <a v-if="instance.errorCount" class="email-errors" @click="navigateToMessageGroup($event, instance.serviceControlId)">
                                     <i class="fa fa-envelope"></i>
-                                    <span class="badge badge-important cursorpointer"> {{ instance.errorCount }}</span>
+                                    <span class="badge badge-important"> {{ instance.errorCount }}</span>
                                   </a>
                                 </span>
                               </div>

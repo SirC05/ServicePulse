@@ -80,9 +80,9 @@ function formatGraphDecimal(input, deci) {
           <a class="monitoring-lost-link" ng-href="{{getDetailsUrl(endpoint)}}&tab=instancesBreakdown"><i class="fa pa-endpoint-lost endpoints-overview"></i></a>
         </span>
         <span class="warning" v-if="endpoint.errorCount" v-tooltip :title="endpoint.errorCount + ` failed messages associated with this endpoint. Click to see list.`">
-          <a v-if="endpoint.errorCount" class="warning cursorpointer" @click="navigateToMessageGroup($event, endpoint.serviceControlId)">
+          <a v-if="endpoint.errorCount" class="email-errors" @click="navigateToMessageGroup($event, endpoint.serviceControlId)">
             <i class="fa fa-envelope"></i>
-            <span class="badge badge-important ng-binding cursorpointer">{{ endpoint.errorCount }}</span>
+            <span class="badge badge-important ng-binding">{{ endpoint.errorCount }}</span>
           </a>
         </span>
       </div>
