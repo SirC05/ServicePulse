@@ -90,69 +90,49 @@ function formatGraphDecimal(input, deci) {
   </div>
   <!--Queue Length-->
   <div class="table-col">
-    <div class="box-header">
-      <div class="no-side-padding">
         <D3Graph :type="'queue-length'" :isdurationgraph="false" :plotdata="endpoint.metrics.queueLength" :minimumyaxis="smallGraphsMinimumYAxis.queueLength" :avglabelcolor="'#EA7E00'" :metricsuffix="'MSGS'" :key="endpoint"></D3Graph>
-      </div>
-      <div class="no-side-padding sparkline-value">
+      <div class="sparkline-value">
         {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDecimal(endpoint.metrics.queueLength, 0) }}
         <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" v-tooltip title="No metrics received or endpoint is not configured to send metrics">?</strong>
         <strong v-if="endpoint.isScMonitoringDisconnected" v-tooltip title="Unable to connect to monitoring server">?</strong>
       </div>
-    </div>
   </div>
   <!--Throughput-->
   <div class="table-col">
-    <div class="box-header">
-      <div class="no-side-padding">
         <D3Graph :type="'throughput'" :isdurationgraph="false" :plotdata="endpoint.metrics.throughput" :minimumyaxis="smallGraphsMinimumYAxis.throughput" :avglabelcolor="'#176397'" :metricsuffix="'MSGS/S'"></D3Graph>
-      </div>
-      <div class="no-side-padding sparkline-value">
+      <div class="sparkline-value">
         {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDecimal(endpoint.metrics.throughput, 2) }}
         <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" v-tooltip title="No metrics received or endpoint is not configured to send metrics">?</strong>
         <strong v-if="endpoint.isScMonitoringDisconnected" v-tooltip title="Unable to connect to monitoring server">?</strong>
       </div>
-    </div>
   </div>
   <!--Scheduled Retries-->
   <div class="table-col">
-    <div class="box-header">
-      <div class="no-side-padding">
         <D3Graph :type="'retries'" :isdurationgraph="false" :plotdata="endpoint.metrics.retries" :minimumyaxis="smallGraphsMinimumYAxis.retries" :avglabelcolor="'#CC1252'" :metricsuffix="'MSGS/S'"></D3Graph>
-      </div>
-      <div class="no-side-padding sparkline-value">
+      <div class="sparkline-value">
         {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDecimal(endpoint.metrics.retries, 2) }}
         <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" v-tooltip title="No metrics received or endpoint is not configured to send metrics">?</strong>
         <strong v-if="endpoint.isScMonitoringDisconnected" v-tooltip title="Unable to connect to monitoring server">?</strong>
       </div>
-    </div>
   </div>
   <!--Processing Time-->
   <div class="table-col">
-    <div class="box-header">
-      <div class="no-side-padding">
         <D3Graph :type="'processing-time'" :isdurationgraph="true" :plotdata="endpoint.metrics.processingTime" :minimumyaxis="smallGraphsMinimumYAxis.processingTime" :avglabelcolor="'#258135'"></D3Graph>
-      </div>
-      <div class="no-side-padding sparkline-value">
+      <div class="sparkline-value">
         {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDuration(endpoint.metrics.processingTime).value }}
         <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" v-tooltip title="No metrics received or endpoint is not configured to send metrics">?</strong>
         <strong v-if="endpoint.isScMonitoringDisconnected" v-tooltip title="Unable to connect to monitoring server">?</strong>
         <span v-if="endpoint.isStale == false && endpoint.isScMonitoringDisconnected == false"> {{ formatGraphDuration(endpoint.metrics.processingTime).unit }}</span>
       </div>
-    </div>
   </div>
   <!--Critical Time-->
   <div class="table-col">
-    <div class="box-header">
-      <div class="no-side-padding">
         <D3Graph :type="'critical-time'" :isdurationgraph="true" :plotdata="endpoint.metrics.criticalTime" :minimumyaxis="smallGraphsMinimumYAxis.criticalTime" :avglabelcolor="'#2700CB'"></D3Graph>
-      </div>
-      <div class="no-side-padding sparkline-value" :class="{ negative: formatGraphDuration(endpoint.metrics.criticalTime).value < 0 }">
+      <div class="sparkline-value" :class="{ negative: formatGraphDuration(endpoint.metrics.criticalTime).value < 0 }">
         {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDuration(endpoint.metrics.criticalTime).value }}
         <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" title="No metrics received or endpoint is not configured to send metrics">?</strong>
         <strong v-if="endpoint.isScMonitoringDisconnected" title="Unable to connect to monitoring server">?</strong>
         <span v-if="endpoint.isStale == false && endpoint.isScMonitoringDisconnected == false" class="unit"> {{ formatGraphDuration(endpoint.metrics.criticalTime).unit }}</span>
       </div>
-    </div>
   </div>
 </template>

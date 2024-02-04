@@ -4,7 +4,6 @@ defineProps({
 });
 </script>
 <template>
-  <div class="box-header">
     <button ng-click="vm.toggleSort()">
       <span>
         <slot></slot> &nbsp;
@@ -15,5 +14,4 @@ defineProps({
         <!-- <i class="bi bi-sort-down"></i> -->
       </div>
     </button>
-  </div>
 </template>

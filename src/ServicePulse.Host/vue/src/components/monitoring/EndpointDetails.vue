@@ -514,29 +514,19 @@ onMounted(() => {
                 <!--headers-->
                 <div v-if="loadedSuccessfully" class="table-head-row">
                   <div class="table-first-col col-wide">
-                    <div class="box-header">
-                      <div class="col-xs-12">Instance Name</div>
-                    </div>
+                      <div>Instance Name</div>
                   </div>
                   <div class="table-col col-small">
-                    <div class="box-header">
-                      <div class="col-xs-12 no-side-padding" v-tooltip :title="`Throughput: The number of messages per second successfully processed by a receiving endpoint.`">Throughput <span class="table-header-unit">(msgs/s)</span></div>
-                    </div>
+                      <div v-tooltip :title="`Throughput: The number of messages per second successfully processed by a receiving endpoint.`">Throughput <span class="table-header-unit">(msgs/s)</span></div>
                   </div>
                   <div class="table-col col-small">
-                    <div class="box-header">
-                      <div class="col-xs-12 no-side-padding" v-tooltip :title="`Scheduled retries: The number of messages per second scheduled for retries (immediate or delayed).`">Scheduled retries <span class="table-header-unit">(msgs/s)</span></div>
-                    </div>
+                      <div v-tooltip :title="`Scheduled retries: The number of messages per second scheduled for retries (immediate or delayed).`">Scheduled retries <span class="table-header-unit">(msgs/s)</span></div>
                   </div>
                   <div class="table-col col-small">
-                    <div class="box-header">
-                      <div class="col-xs-12 no-side-padding" v-tooltip :title="`Processing time: The time taken for a receiving endpoint to successfully process a message.`">Processing Time <span class="table-header-unit">(t)</span></div>
-                    </div>
+                      <div v-tooltip :title="`Processing time: The time taken for a receiving endpoint to successfully process a message.`">Processing Time <span class="table-header-unit">(t)</span></div>
                   </div>
                   <div class="table-col col-small">
-                    <div class="box-header">
-                      <div class="col-xs-12 no-side-padding" v-tooltip :title="`Critical time: The elapsed time from when a message was sent, until it was successfully processed by a receiving endpoint.`">Critical Time <span class="table-header-unit">(t)</span></div>
-                    </div>
+                      <div v-tooltip :title="`Critical time: The elapsed time from when a message was sent, until it was successfully processed by a receiving endpoint.`">Critical Time <span class="table-header-unit">(t)</span></div>
                   </div>
                 </div>
 
@@ -572,34 +562,24 @@ onMounted(() => {
                               </div>
                           </div>
                           <div class="table-col col-small">
-                            <div class="row box-header">
-                              <div class="no-side-padding">
                                 <D3Graph :type="'throughput'" :isdurationgraph="false" :plotdata="instance.metrics.throughput" :minimumyaxis="smallGraphsMinimumYAxis.throughput" :avglabelcolor="'#176397'" :metricsuffix="'MSGS/S'"></D3Graph>
-                                <span class="no-side-padding sparkline-value">
+                                <span class="sparkline-value">
                                   {{ instance.isStale == true || instance.isScMonitoringDisconnected == true ? "" : formatGraphDecimal(instance.metrics.throughput) }}
                                   <strong v-if="instance.isStale && !instance.isScMonitoringDisconnected" v-tooltip :title="`No metrics received or instance is not configured to send metrics`">?</strong>
                                   <strong v-if="instance.isScMonitoringDisconnected" v-tooltip :title="`Unable to connect to monitoring server`">?</strong>
                                 </span>
-                              </div>
-                            </div>
                           </div>
                           <div class="table-col col-small">
-                            <div class="row box-header">
-                              <div class="no-side-padding">
                                 <D3Graph :type="'retries'" :isdurationgraph="false" :plotdata="instance.metrics.retries" :minimumyaxis="smallGraphsMinimumYAxis.retries" :avglabelcolor="'#CC1252'" :metricsuffix="'MSGS/S'"></D3Graph>
-                                <span class="no-side-padding sparkline-value">
+                                <span class="sparkline-value">
                                   {{ instance.isStale == true || instance.isScMonitoringDisconnected == true ? "" : formatGraphDecimal(instance.metrics.retries) }}
                                   <strong v-if="instance.isStale && !instance.isScMonitoringDisconnected" v-tooltip :title="`No metrics received or instance is not configured to send metrics`">?</strong>
                                   <strong v-if="instance.isScMonitoringDisconnected" v-tooltip :title="`Unable to connect to monitoring server`">?</strong>
                                 </span>
-                              </div>
-                            </div>
                           </div>
                           <div class="table-col col-small">
-                            <div class="row box-header">
-                              <div class="no-side-padding">
                                 <D3Graph :type="'processing-time'" :isdurationgraph="true" :plotdata="instance.metrics.processingTime" :minimumyaxis="smallGraphsMinimumYAxis.processingTime" :avglabelcolor="'#258135'"></D3Graph>
-                                <span class="no-side-padding sparkline-value">
+                                <span class="sparkline-value">
                                   {{ instance.isStale == true || instance.isScMonitoringDisconnected == true ? "" : formatGraphDuration(instance.metrics.processingTime).value }}
                                   <strong v-if="instance.isStale && !instance.isScMonitoringDisconnected" v-tooltip :title="`No metrics received or instance is not configured to send metrics`">?</strong>
                                   <strong v-if="instance.isScMonitoringDisconnected" v-tooltip :title="`Unable to connect to monitoring server`">?</strong>
@@ -607,14 +587,10 @@ onMounted(() => {
                                     {{ formatGraphDuration(instance.metrics.processingTime).unit }}
                                   </span>
                                 </span>
-                              </div>
-                            </div>
                           </div>
                           <div class="table-col col-small">
-                            <div class="row box-header">
-                              <div class="no-side-padding">
                                 <D3Graph :type="'critical-time'" :isdurationgraph="true" :plotdata="instance.metrics.criticalTime" :minimumyaxis="smallGraphsMinimumYAxis.criticalTime" :avglabelcolor="'#2700CB'"></D3Graph>
-                                <span class="no-side-padding sparkline-value" :class="{ negative: formatGraphDuration(instance.metrics.criticalTime).value < 0 }">
+                                <span class="sparkline-value" :class="{ negative: formatGraphDuration(instance.metrics.criticalTime).value < 0 }">
                                   {{ instance.isStale == true || instance.isScMonitoringDisconnected == true ? "" : formatGraphDuration(instance.metrics.criticalTime).value }}
                                   <strong v-if="instance.isStale && !instance.isScMonitoringDisconnected" v-tooltip :title="`No metrics received or instance is not configured to send metrics`">?</strong>
                                   <strong v-if="instance.isScMonitoringDisconnected" v-tooltip :title="`Unable to connect to monitoring server`">?</strong>
@@ -622,8 +598,6 @@ onMounted(() => {
                                     {{ formatGraphDuration(instance.metrics.criticalTime).unit }}
                                   </span>
                                 </span>
-                              </div>
-                            </div>
                           </div>
 
                           <!--remove endpoint-->
@@ -654,29 +628,19 @@ onMounted(() => {
                 <!--headers-->
                 <div v-if="loadedSuccessfully" class="table-head-row">
                   <div class="table-first-col col-wide">
-                    <div class="box-header">
-                      <div class="col-xs-12">Message type name</div>
-                    </div>
+                      <div>Message type name</div>
                   </div>
                   <div class="table-col col-small">
-                    <div class="box-header">
-                      <div class="col-xs-12 no-side-padding" v-tooltip :title="`Throughput: The number of messages per second successfully processed by a receiving endpoint.`">Throughput <span class="table-header-unit">(msgs/s)</span></div>
-                    </div>
+                      <div v-tooltip :title="`Throughput: The number of messages per second successfully processed by a receiving endpoint.`">Throughput <span class="table-header-unit">(msgs/s)</span></div>
                   </div>
                   <div class="table-col col-small">
-                    <div class="box-header">
-                      <div class="col-xs-12 no-side-padding" v-tooltip :title="`Scheduled retries: The number of messages per second scheduled for retries (immediate or delayed).`">Scheduled retries <span class="table-header-unit">(msgs/s)</span></div>
-                    </div>
+                      <div v-tooltip :title="`Scheduled retries: The number of messages per second scheduled for retries (immediate or delayed).`">Scheduled retries <span class="table-header-unit">(msgs/s)</span></div>
                   </div>
                   <div class="table-col col-small">
-                    <div class="box-header">
-                      <div class="col-xs-12 no-side-padding" v-tooltip :title="`Processing time: The time taken for a receiving endpoint to successfully process a message.`">Processing Time <span class="table-header-unit">(t)</span></div>
-                    </div>
+                      <div v-tooltip :title="`Processing time: The time taken for a receiving endpoint to successfully process a message.`">Processing Time <span class="table-header-unit">(t)</span></div>
                   </div>
                   <div class="table-col col-small">
-                    <div class="box-header">
-                      <div class="col-xs-12 no-side-padding" v-tooltip :title="`Critical time: The elapsed time from when a message was sent, until it was successfully processed by a receiving endpoint.`">Critical Time <span class="table-header-unit">(t)</span></div>
-                    </div>
+                      <div v-tooltip :title="`Critical time: The elapsed time from when a message was sent, until it was successfully processed by a receiving endpoint.`">Critical Time <span class="table-header-unit">(t)</span></div>
                   </div>
                   <div class="table-col col-tiny"></div>
                 </div>
@@ -690,12 +654,12 @@ onMounted(() => {
                         
                           <div class="table-first-col col-wide endpoint-name vertical" uib-tooltip-html="messageType.tooltipText">
                             <div class="endpoint-name_wrapper">
-                              <div class="col-lg-max-9 no-side-padding lead message-type-label righ-side-ellipsis">
+                              <div class="col-lg-max-9 lead message-type-label righ-side-ellipsis">
                                 <div class="lead">
                                   {{ messageType.shortName ? messageType.shortName : "Unknown" }}
                                 </div>
                               </div>
-                              <div class="col-lg-4 no-side-padding endpoint-status message-type-status">
+                              <div class="col-lg-4 endpoint-status message-type-status">
                                 <span class="warning" v-if="messageType.metrics != null && formatGraphDuration(messageType.metrics.criticalTime).value < 0">
                                   <i class="fa pa-warning" v-tooltip :title="`Warning: message type currently has negative critical time, possibly because of a clock drift.`"></i>
                                 </span>
@@ -716,34 +680,24 @@ onMounted(() => {
                             </div>
                           </div>
                           <div class="table-col col-small">
-                            <div class="row box-header">
-                              <div class="no-side-padding">
                                 <D3Graph :type="'throughput'" :isdurationgraph="false" :plotdata="messageType.metrics.throughput" :minimumyaxis="smallGraphsMinimumYAxis.throughput" :avglabelcolor="'#176397'" :metricsuffix="'MSGS/S'"></D3Graph>
-                                <span class="no-side-padding sparkline-value">
+                                <span class="sparkline-value">
                                   {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDecimal(messageType.metrics.throughput, 2) }}
                                   <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" v-tooltip :title="`No metrics received or endpoint is not configured to send metrics`">?</strong>
                                   <strong v-if="endpoint.isScMonitoringDisconnected" v-tooltip :title="`Unable to connect to monitoring server`">?</strong>
                                 </span>
-                              </div>
-                            </div>
                           </div>
                           <div class="table-col col-small">
-                            <div class="row box-header">
-                              <div class="no-side-padding">
                                 <D3Graph :type="'retries'" :isdurationgraph="false" :plotdata="messageType.metrics.retries" :minimumyaxis="smallGraphsMinimumYAxis.retries" :avglabelcolor="'#CC1252'" :metricsuffix="'MSGS/S'"></D3Graph>
-                                <span class="no-side-padding sparkline-value">
+                                <span class="sparkline-value">
                                   {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDecimal(messageType.metrics.retries, 2) }}
                                   <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" v-tooltip :title="`No metrics received or endpoint is not configured to send metrics`">?</strong>
                                   <strong v-if="endpoint.isScMonitoringDisconnected" v-tooltip :title="`Unable to connect to monitoring server`">?</strong>
                                 </span>
-                              </div>
-                            </div>
                           </div>
                           <div class="table-col col-small">
-                            <div class="row box-header">
-                              <div class="no-side-padding">
                                 <D3Graph :type="'processing-time'" :isdurationgraph="true" :plotdata="messageType.metrics.processingTime" :minimumyaxis="smallGraphsMinimumYAxis.processingTime" :avglabelcolor="'#258135'"></D3Graph>
-                                <span class="no-side-padding sparkline-value">
+                                <span class="sparkline-value">
                                   {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDuration(messageType.metrics.processingTime).value }}
                                   <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" v-tooltip :title="`No metrics received or endpoint is not configured to send metrics`">?</strong>
                                   <strong v-if="endpoint.isScMonitoringDisconnected" v-tooltip :title="`Unable to connect to monitoring server`">?</strong>
@@ -751,14 +705,10 @@ onMounted(() => {
                                     {{ formatGraphDuration(messageType.metrics.processingTime).unit }}
                                   </span>
                                 </span>
-                              </div>
-                            </div>
                           </div>
                           <div class="table-col col-small">
-                            <div class="row box-header">
-                              <div class="no-side-padding">
                                 <D3Graph :type="'critical-time'" :isdurationgraph="true" :plotdata="messageType.metrics.criticalTime" :minimumyaxis="smallGraphsMinimumYAxis.criticalTime" :avglabelcolor="'#2700CB'"></D3Graph>
-                                <span class="no-side-padding sparkline-value" :class="{ negative: formatGraphDuration(messageType.metrics.criticalTime).value < 0 }">
+                                <span class="sparkline-value" :class="{ negative: formatGraphDuration(messageType.metrics.criticalTime).value < 0 }">
                                   {{ endpoint.isStale == true || endpoint.isScMonitoringDisconnected == true ? "" : formatGraphDuration(messageType.metrics.criticalTime).value }}
                                   <strong v-if="endpoint.isStale && !endpoint.isScMonitoringDisconnected" v-tooltip :title="`No metrics received or endpoint is not configured to send metrics`">?</strong>
                                   <strong v-if="endpoint.isScMonitoringDisconnected" v-tooltip :title="`Unable to connect to monitoring server`">?</strong>
@@ -766,8 +716,6 @@ onMounted(() => {
                                     {{ formatGraphDuration(messageType.metrics.criticalTime).unit }}
                                   </span>
                                 </span>
-                              </div>
-                            </div>
                           </div>
                         
                       
